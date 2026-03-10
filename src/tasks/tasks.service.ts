@@ -6,6 +6,7 @@ import { CreateTaskDTO } from './dto/create-task.dto';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
 import { UpdateTaskDTO } from './dto/update-task.dto';
+import { GetTaskFilter } from './dto/get-task-filter';
 
 @Injectable()
 export class TasksService {
@@ -15,8 +16,45 @@ export class TasksService {
     private readonly taskRepository: Repository<Task>,
   ) {}
   // Método para obtener todas las tareas
-  async getAll(): Promise<Task[]> {
-    return await this.taskRepository.find();
+  async getAll(filterDTO: GetTaskFilter): Promise<Task[]> {
+    const { status, priority, search } = filterDTO;
+    // Se crea un query builder para construir la consulta de manera dinámica
+    const query = this.taskRepository.createQueryBuilder('task');
+
+    if (status) {
+      query.andWhere('task.status = :status', { status });
+    }
+    if (priority) {
+      query.andWhere('task.priority = :priority', { priority });
+    }
+    if (search) {
+      query.andWhere(
+        '(LOWER(task.title) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search))',
+        { search: `%${search}%` },
+      );
+    }
+
+    try {
+      return await query.getMany();
+    } catch (error) {
+      this.logger.error(
+        `Error al obtener tareas: ${error instanceof Error ? error.message : 'Error desconocido'}`,
+      );
+      throw new InternalServerErrorException(
+        'Error al obtener tareas de la base de datos',
+      );
+    }
+  }
+
+  // Método para obtener una tarea por su ID
+  async findOne(id: string): Promise<Task> {
+    const task = await this.taskRepository.findOne({ where: { id } });
+
+    if (!task) {
+      throw new NotFoundException(`No se encontró la tarea con ID ${id}`);
+    }
+
+    return task;
   }
 
   // Método para crear una nueva tarea
