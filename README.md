@@ -26,31 +26,38 @@ API desarrollada con **NestJS** para la gestión eficiente de tareas, aplicando 
 
 ---
 
-## Probar Endpoints
-Puedes utilizar Postman, Insomnia o cualquier cliente REST para interactuar con la API. La URL base por defecto es: http://localhost:3000/api/tasks.
+## 🚀 Guía de Uso (Endpoints)
 
-Estructura JSON 
-Para las peticiones POST y PATCH, utiliza el siguiente formato:
+Puedes utilizar **Postman**, **Insomnia** o cualquier cliente REST para interactuar con la API.
+
+**URL Base:** `http://localhost:3000/api/tasks`
+
+### 📋 Estructura de Datos (JSON)
+Para las peticiones **POST** y **PATCH**, utiliza el siguiente formato en el cuerpo (*Body*):
+
+```json
 {
   "title": "Finalizar entrega",
   "description": "Revisar los últimos cambios antes del push",
-  "status": "OPEN", 
+  "status": "OPEN",
   "priority": "HIGH"
 }
 Nota: Los estados permitidos son OPEN, IN_PROGRESS, DONE. Las prioridades son LOW, MEDIUM, HIGH.
 
-GET	/	Obtiene todas las tareas (soporta filtros con QueryParams)
-Ejemplo: http://localhost:3000/api/tasks o http://localhost:3000/api/tasks?status=OPEN&priority=HIGH
+La URL base para todas las peticiones es: `http://localhost:3000/api/tasks`
 
-POST / Crea una nueva tarea
-Ejemplo: http://localhost:3000/api/tasks 
+| Método | Endpoint | Descripción | Ejemplo / Query Params |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/` | Obtener todas las tareas | `?status=OPEN&priority=HIGH` |
+| **POST** | `/` | Crear nueva tarea | (Requiere Body JSON) |
+| **PATCH** | `/:id` | Actualizar tarea | `/tasks/8e7f12...` (Solo campos a cambiar) |
+| **DELETE** | `/:id` | Eliminar tarea | `/tasks/8e7f12...` |
 
-PATCH /:id Actualiza tareas
-Requiere el ID de la tarea en la URL. Solo envía los campos que deseas cambiar.
-URL: http://localhost:3000/api/tasks/8e7f12... (reemplazar por un UUID válido)
+### 💡 Ejemplos Rápidos
 
-DELETE /:id Elimina tareas
-Ejemplo: http://localhost:3000/api/tasks/8e7f12...
+* **Listar con filtros:** `GET http://localhost:3000/api/tasks?status=OPEN&priority=HIGH`
+* **Actualizar un campo (PATCH):** `PATCH http://localhost:3000/api/tasks/tu-uuid-aqui`  
+    *Body:* `{ "status": "DONE" }`
 
 ## 🧪 Testing
 Se ha implementado pruebas unitarias para el `TasksService` que cubre la lógica de negocio, el manejo de excepciones y los filtros dinámicos incluyendo las 4 peticiones HTTP.
