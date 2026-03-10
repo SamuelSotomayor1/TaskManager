@@ -16,7 +16,7 @@ import { UpdateTaskDTO } from './dto/update-task.dto';
 import { GetTaskFilter } from './dto/get-task-filter';
 import { TaskStatus } from './entities/task.entity';
 
-@Controller('tasks') //Ruta base (http://localhost:3000/api/tasks)
+@Controller('tasks') //Ruta base
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
