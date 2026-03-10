@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { TaskPriority, TaskStatus } from '../entities/task.entity';
 
-export class createTaskDTO {
+export class CreateTaskDTO {
   @IsString()
   @IsNotEmpty()
   @MinLength(3)
