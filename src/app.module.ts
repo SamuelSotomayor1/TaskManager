@@ -1,6 +1,7 @@
 import { Module, OnModuleInit, Logger } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TasksModule } from './tasks/tasks.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -28,6 +29,8 @@ import * as Joi from 'joi';
       autoLoadEntities: true,
       synchronize: true,
     }),
+
+    TasksModule,
   ],
 })
 export class AppModule implements OnModuleInit {
