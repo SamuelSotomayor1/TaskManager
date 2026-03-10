@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseEnumPipe,
   ParseUUIDPipe,
   Patch,
   Post,
@@ -13,6 +14,7 @@ import { TasksService } from './tasks.service';
 import { CreateTaskDTO } from './dto/create-task.dto';
 import { UpdateTaskDTO } from './dto/update-task.dto';
 import { GetTaskFilter } from './dto/get-task-filter';
+import { TaskStatus } from './entities/task.entity';
 
 @Controller('tasks') //Ruta base (http://localhost:3000/api/tasks)
 export class TasksController {
@@ -43,6 +45,15 @@ export class TasksController {
     @Body() updateTaskDTO: UpdateTaskDTO,
   ) {
     return this.tasksService.update(id, updateTaskDTO);
+  }
+
+  //Actualizar el estado de una tarea específica
+  @Patch(':id/status')
+  updateStatus(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body('status', new ParseEnumPipe(TaskStatus)) status: TaskStatus,
+  ) {
+    return this.tasksService.update(id, { status });
   }
 
   // Eliminar una tarea
