@@ -34,7 +34,7 @@ Puedes utilizar **Postman**, **Insomnia** o cualquier cliente REST para interact
 
 ### 📋 Estructura de Datos (JSON)
 Para las peticiones **POST** y **PATCH**, utiliza el siguiente formato en el cuerpo (*Body*):
-
+Nota: Los estados permitidos son OPEN, IN_PROGRESS, DONE. Las prioridades son LOW, MEDIUM, HIGH.
 ```json
 {
   "title": "Finalizar entrega",
@@ -42,22 +42,30 @@ Para las peticiones **POST** y **PATCH**, utiliza el siguiente formato en el cue
   "status": "OPEN",
   "priority": "HIGH"
 }
-Nota: Los estados permitidos son OPEN, IN_PROGRESS, DONE. Las prioridades son LOW, MEDIUM, HIGH.
 
-La URL base para todas las peticiones es: `http://localhost:3000/api/tasks`
+**URL Base:** `http://localhost:3000/api/tasks`
 
 | Método | Endpoint | Descripción | Ejemplo / Query Params |
 | :--- | :--- | :--- | :--- |
 | **GET** | `/` | Obtener todas las tareas | `?status=OPEN&priority=HIGH` |
-| **POST** | `/` | Crear nueva tarea | (Requiere Body JSON) |
-| **PATCH** | `/:id` | Actualizar tarea | `/tasks/8e7f12...` (Solo campos a cambiar) |
-| **DELETE** | `/:id` | Eliminar tarea | `/tasks/8e7f12...` |
+| **POST** | `/` | Crear nueva tarea | *(Requiere Body JSON)* |
+| **PATCH** | `/:id` | Actualizar tarea | `/tasks/{uuid}` |
+| **DELETE** | `/:id` | Eliminar tarea | `/tasks/{uuid}` |
 
-### 💡 Ejemplos Rápidos
+---
 
-* **Listar con filtros:** `GET http://localhost:3000/api/tasks?status=OPEN&priority=HIGH`
-* **Actualizar un campo (PATCH):** `PATCH http://localhost:3000/api/tasks/tu-uuid-aqui`  
-    *Body:* `{ "status": "DONE" }`
+### 💡 Ejemplos de uso rápido
+
+**Listar con filtros (GET):**
+> http://localhost:3000/api/tasks?status=OPEN&priority=HIGH
+
+**Actualizar estado (PATCH):**
+* **URL:** http://localhost:3000/api/tasks/tu-uuid-aqui
+* **Body:**
+```json
+{
+  "status": "DONE"
+}
 
 ## 🧪 Testing
 Se ha implementado pruebas unitarias para el `TasksService` que cubre la lógica de negocio, el manejo de excepciones y los filtros dinámicos incluyendo las 4 peticiones HTTP.
