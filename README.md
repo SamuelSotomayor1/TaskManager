@@ -10,15 +10,16 @@ API desarrollada con **NestJS** para la gestión eficiente de tareas, aplicando 
 - **Validación:** Class-Validator
 
 ## 🛠️ Estructura del Proyecto
+
 src/
-├── main.ts                # Punto de entrada de la APP
-├── app.module.ts          # Módulo raíz (Conexión a DB y Providers)
-└── tasks/                 # Módulo de Gestión de Tareas
-    ├── dto/               # Data Transfer Objects (Validación de entrada)
+├── main.ts                 # Punto de entrada de la APP
+├── app.module.ts           # Módulo raíz (Conexión a DB)
+└── tasks/                  # Módulo de Gestión de Tareas
+    ├── dto/                # Data Transfer Objects (Validación de entrada)
     │   ├── create-task.dto.ts
     │   ├── update-task.dto.ts
     │   └── get-tasks-filter.dto.ts
-    ├── entities/          # Definición de la tabla Task (TypeORM)
+    ├── entities/           # Definición de la tabla Task (TypeORM)
     │   └── task.entity.ts
     ├── tasks.controller.ts # Definición de rutas y verbos HTTP
     ├── tasks.service.ts    # Lógica de negocio y persistencia
