@@ -63,6 +63,8 @@ Nota: Los estados permitidos son OPEN, IN_PROGRESS, DONE. Las prioridades son LO
   "priority": "HIGH"
 }
 
+```
+
 **URL Base:** `http://localhost:3000/api/tasks`
 
 | Método | Endpoint | Descripción | Ejemplo / Query Params |
@@ -86,7 +88,7 @@ Nota: Los estados permitidos son OPEN, IN_PROGRESS, DONE. Las prioridades son LO
 {
   "status": "DONE"
 }
-
+```
 ## 🧪 Testing
 Se ha implementado pruebas unitarias para el `TasksService` que cubre la lógica de negocio, el manejo de excepciones y los filtros dinámicos incluyendo las 4 peticiones HTTP.
 
