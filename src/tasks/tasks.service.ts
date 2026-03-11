@@ -99,6 +99,7 @@ export class TasksService {
 
   //Método para eliminar una tarea por su ID
   async delete(id: string): Promise<void> {
+    await this.findOne(id); // Verificar si la tarea existe antes de intentar eliminarla
     const result = await this.taskRepository.delete(id);
 
     if (result.affected === 0) {

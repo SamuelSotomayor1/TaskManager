@@ -13,7 +13,7 @@ API desarrollada con **NestJS** para la gestión eficiente de tareas, aplicando 
 
 1.  **Clonar el repositorio:** Descarga el código en tu máquina local.
 2.  **Configurar Variables de Entorno:** * Crea un archivo `.env` en la raíz del proyecto.
-    * Copia el contenido de `.env.example` y completa los datos de tu conexión de PostgreSQL (Asegúrate de crear la base de datos en **pgAdmin** o mediante SQL antes de continuar).
+    * Copia el contenido de `.env.example` y completa los datos de tu conexión de PostgreSQL (Asegúrate de crear la base de datos en **pgAdmin** o mediante SQL de forma manual antes de continuar).
 3.  **Instalación de Dependencias:**
     ```bash
     pnpm install
