@@ -10,7 +10,7 @@ API desarrollada con **NestJS** para la gestión eficiente de tareas, aplicando 
 - **Validación:** Class-Validator
 
 ## 📁 Estructura del Proyecto
-` ` `
+```
 src/
 ├── main.ts                 # Punto de entrada de la APP
 ├── app.module.ts           # Módulo raíz (Conexión a DB)
@@ -25,7 +25,7 @@ src/
   ├── tasks.service.ts    # Lógica de negocio y persistencia
   ├── tasks.service.spec.ts # Pruebas Unitarias del Servicio (Jest)
   └── tasks.module.ts     # Configuración del módulo de tareas
-` ` `
+```
 ## ⚙️ Configuración del Entorno
 
 1.  **Clonar el repositorio:** 
