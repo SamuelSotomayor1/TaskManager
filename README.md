@@ -2,22 +2,41 @@
 
 API desarrollada con **NestJS** para la gestión eficiente de tareas, aplicando principios de arquitectura limpia y tipado estricto.
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Stack 
 - **Framework:** NestJS (Node.js)
 - **Base de Datos:** PostgreSQL
 - **ORM:** TypeORM
 - **Pruebas:** Jest
-- **Validación:** Class-Validator & Class-Transformer
+- **Validación:** Class-Validator
+
+## 🛠️ Estructura del Proyecto
+src/
+├── main.ts                # Punto de entrada de la APP
+├── app.module.ts          # Módulo raíz (Conexión a DB y Providers)
+└── tasks/                 # Módulo de Gestión de Tareas
+    ├── dto/               # Data Transfer Objects (Validación de entrada)
+    │   ├── create-task.dto.ts
+    │   ├── update-task.dto.ts
+    │   └── get-tasks-filter.dto.ts
+    ├── entities/          # Definición de la tabla Task (TypeORM)
+    │   └── task.entity.ts
+    ├── tasks.controller.ts # Definición de rutas y verbos HTTP
+    ├── tasks.service.ts    # Lógica de negocio y persistencia
+    ├── tasks.service.spec.ts # Pruebas Unitarias del Servicio (Jest)
+    └── tasks.module.ts     # Configuración del módulo de tareas
 
 ## ⚙️ Configuración del Entorno
 
-1.  **Clonar el repositorio:** Descarga el código en tu máquina local.
-2.  **Configurar Variables de Entorno:** * Crea un archivo `.env` en la raíz del proyecto.
-    * Copia el contenido de `.env.example` y completa los datos de tu conexión de PostgreSQL (Asegúrate de crear la base de datos en **pgAdmin** o mediante SQL de forma manual antes de continuar).
-3.  **Instalación de Dependencias:**
+1.  **Clonar el repositorio:** 
+    ```bash
+    git clone https://github.com/SamuelSotomayor1/TaskManager
+    cd proyecto
+    ```
+2.  **Instalación de Dependencias:**
     ```bash
     pnpm install
-    ```
+3.  **Configurar Variables de Entorno:** * Crea un archivo `.env` en la raíz del proyecto.
+    * Copia el contenido de `.env.example` y completa los datos de tu conexión de PostgreSQL (Asegúrate de crear la base de datos en **pgAdmin** o mediante SQL de forma manual antes de continuar).
 4.  **Levantar el Servidor:**
     ```bash
     pnpm run start:dev
